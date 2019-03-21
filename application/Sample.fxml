@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDropped="#dropping" onDragOver="#draggingOver" prefHeight="532.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadFiles" text="Open" />
+              <MenuItem mnemonicParsing="false" onAction="#closeGraph" text="Close" />
+                  <MenuItem fx:id="exportImage" mnemonicParsing="false" onAction="#exportAsPng" text="Export as .png" />
+                  <MenuItem fx:id="exportGraphico" mnemonicParsing="false" onAction="#exportAsGraphico" text="Export as .graphico" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="undoitem" mnemonicParsing="false" onAction="#undo" text="Undo" />
+                  <MenuItem fx:id="redoitem" mnemonicParsing="false" onAction="#redo" text="Redo" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <Accordion prefHeight="438.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane animated="false" text="Options">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="13.7" layoutY="43.7" prefHeight="365.0" prefWidth="225.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BorderPane prefHeight="31.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Insert node" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <SplitPane dividerPositions="0.46534653465346537" prefHeight="29.0" prefWidth="103.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField fx:id="inTf" layoutX="-60.0" layoutY="2.0" prefHeight="29.0" prefWidth="43.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <Button fx:id="inB" layoutX="-12.0" layoutY="2.0" mnemonicParsing="false" onAction="#insertNode" prefHeight="29.0" prefWidth="50.0" text="Go" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </right>
+                              </BorderPane>
+                              <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Insert edge" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <SplitPane dividerPositions="0.26153846153846155" prefHeight="29.0" prefWidth="132.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField fx:id="ieTf1" layoutX="-60.0" layoutY="4.0" prefHeight="33.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="27.0" prefWidth="103.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.4111111111111111" layoutX="-33.0" layoutY="-67.0" prefHeight="27.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <TextField fx:id="ieTf2" layoutX="-58.0" layoutY="1.0" prefHeight="31.0" prefWidth="33.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <Button fx:id="ieB" layoutX="-1.0" mnemonicParsing="false" onAction="#insertEdge" prefHeight="25.0" prefWidth="49.0" text="Go" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="33.0" prefWidth="204.0">
+                                 <left>
+                                    <Label prefHeight="14.0" prefWidth="71.0" text="Delete node" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <SplitPane dividerPositions="0.4803921568627451" prefHeight="32.0" prefWidth="104.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField fx:id="dnTf" layoutX="-60.0" layoutY="4.0" prefHeight="30.0" prefWidth="42.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="53.0">
+                                             <children>
+                                                <Button fx:id="dnB" layoutX="-12.0" layoutY="2.0" mnemonicParsing="false" onAction="#deleteNode" prefHeight="30.0" prefWidth="52.0" text="Go" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="33.0" prefWidth="204.0">
+                                 <left>
+                                    <Label prefHeight="27.0" prefWidth="70.0" text="Delete edge" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <SplitPane dividerPositions="0.559322033898305" prefHeight="33.0" prefWidth="120.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="61.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.5" layoutX="-16.0" layoutY="-64.0" prefHeight="31.0" prefWidth="62.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <TextField fx:id="deTf1" layoutX="-61.0" layoutY="-10.0" prefHeight="29.0" prefWidth="26.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children></AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <TextField fx:id="deTf2" layoutX="-61.0" layoutY="2.0" prefHeight="29.0" prefWidth="26.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children></AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="deB" layoutY="1.0" mnemonicParsing="false" onAction="#deleteEdge" prefHeight="26.0" prefWidth="51.0" text="Go" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="36.0" prefWidth="204.0">
+                                 <left>
+                                    <Label prefHeight="18.0" prefWidth="71.0" text="Shortest path" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <SplitPane dividerPositions="0.29797979797979796" prefHeight="35.0" prefWidth="132.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField fx:id="spTf1" layoutX="-57.0" layoutY="4.0" prefHeight="33.0" prefWidth="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.4117647058823529" layoutX="-65.0" layoutY="-66.0" prefHeight="33.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="41.0">
+                                                         <children>
+                                                            <TextField fx:id="spTf2" layoutX="-58.0" layoutY="2.0" prefHeight="31.0" prefWidth="33.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="45.0">
+                                                         <children>
+                                                            <Button fx:id="spB" layoutX="-4.0" layoutY="2.0" mnemonicParsing="false" onAction="#shortestPath" prefHeight="31.0" prefWidth="44.0" text="Go" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="24.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Node size" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ChoiceBox fx:id="choiceBoxNodeSize" prefHeight="28.0" prefWidth="55.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane layoutX="10.0" layoutY="135.0" prefHeight="24.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Edge size" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ChoiceBox fx:id="choiceBoxEdgeSize" prefHeight="28.0" prefWidth="55.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="27.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Label color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpLabel" onAction="#pickerChanged1" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane layoutX="10.0" layoutY="210.0" prefHeight="29.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Node color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpNode" onAction="#pickerChanged2" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane layoutX="10.0" layoutY="272.0" prefHeight="29.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Edge color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpEdge" onAction="#pickerChanged3" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Algorithms">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="63.0" layoutY="55.0" prefHeight="376.0" prefWidth="225.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label text="Expansion/Contraction" />
+                              <BorderPane prefHeight="31.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Scale:" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <Button fx:id="expansionStart" mnemonicParsing="false" onAction="#expansion" text="Start" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <center>
+                                    <TextField fx:id="expansionScale" maxWidth="76.0" prefHeight="42.0" prefWidth="76.0" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                              <Separator prefWidth="200.0" />
+                              <BorderPane prefHeight="41.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Force Atlas" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <Button mnemonicParsing="false" onAction="#forceAtlas" text="Start" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                           </children></VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="Selection Settings">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="376.0" prefWidth="225.0" spacing="7.0">
+                           <children>
+                              <BorderPane prefHeight="31.0" prefWidth="204.0">
+                                 <right>
+                                    <ColorPicker fx:id="cpsl" onAction="#pickerChanged4" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <left>
+                                    <Label text="Label color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane prefHeight="30.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Node color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpsn" onAction="#pickerChanged5" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane prefHeight="32.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Edge color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpse" onAction="#pickerChanged6" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Formatting">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="376.0" prefWidth="225.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BorderPane prefHeight="28.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Node level" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <TextField fx:id="fgTf" prefHeight="33.0" prefWidth="86.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="28.0" prefWidth="204.0">
+                                 <left>
+                                    <RadioButton fx:id="lss" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Less" BorderPane.alignment="CENTER">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="formatlg" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </left>
+                                 <right>
+                                    <RadioButton fx:id="grt" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" selected="true" text="Greater" toggleGroup="$formatlg" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="31.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Label color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpfl" onAction="#pickerChanged7" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="30.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Node color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpfn" onAction="#pickerChanged8" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="32.0" prefWidth="204.0">
+                                 <left>
+                                    <Label text="Edge color" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ColorPicker fx:id="cpfe" onAction="#pickerChanged9" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="35.0" prefWidth="204.0">
+                                 <right>
+                                    <Button fx:id="fgB" mnemonicParsing="false" onAction="#filterGraph" prefHeight="35.0" prefWidth="87.0" text="Format" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <left>
+                                    <Button fx:id="rfB" mnemonicParsing="false" onAction="#resetFormat" prefHeight="35.0" prefWidth="87.0" text="Reset" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane prefHeight="46.0" prefWidth="204.0">
+                                 <right>
+                                    <Button fx:id="rState" mnemonicParsing="false" onAction="#restoreState" text="Restore state" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <left>
+                                    <Button fx:id="sState" mnemonicParsing="false" onAction="#saveState" text="Save state" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </left>
+   <bottom>
+      <Pane minHeight="-Infinity" prefHeight="21.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+         <effect>
+            <Glow level="0.29">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+         <children>
+            <BorderPane prefHeight="23.0" prefWidth="764.0" />
+         </children>
+      </Pane>
+   </bottom>
+   <right>
+      <SplitPane dividerPositions="0.5" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="422.0" prefWidth="196.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5798319327731093" layoutY="3.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="206.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <VBox layoutX="46.0" layoutY="-42.0" prefHeight="115.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <BorderPane prefHeight="29.0" prefWidth="192.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <left>
+                                          <Label fx:id="lcolor" disable="true" text="Color" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <ColorPicker fx:id="color" disable="true" prefHeight="28.0" prefWidth="46.0" BorderPane.alignment="CENTER" />
+                                       </right>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="36.0" prefWidth="192.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                       <left>
+                                          <Label fx:id="lsize" disable="true" text="Size" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <ChoiceBox fx:id="size" disable="true" prefHeight="28.0" prefWidth="46.0" BorderPane.alignment="CENTER" />
+                                       </right>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="30.0" prefWidth="172.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                       <left>
+                                          <Label fx:id="lname" disable="true" text="Name" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <TextField fx:id="name" disable="true" prefHeight="26.0" prefWidth="107.0" BorderPane.alignment="CENTER" />
+                                       </right>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="36.0" prefWidth="192.0">
+                                       <right>
+                                          <Button fx:id="apply" disable="true" mnemonicParsing="false" onAction="#changeNode" prefHeight="35.0" prefWidth="54.0" text="Apply" BorderPane.alignment="CENTER" />
+                                       </right>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" right="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </BorderPane>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextArea fx:id="ta1" editable="false" layoutX="-4.0" layoutY="-65.0" prefHeight="98.0" prefWidth="192.0" promptText="TextArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <BorderPane prefHeight="239.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <left>
+                        <Slider fx:id="slider" blockIncrement="1.0" max="3.0" maxHeight="1.7976931348623157E308" min="1.0" orientation="VERTICAL" prefHeight="193.0" prefWidth="24.0" value="1.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="212.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="numnodes" text="Number of nodes: 0" />
+                              <Label fx:id="numedges" alignment="CENTER" text="Number of edges: 0" />
+                              <Button id="adjustB" fx:id="adjustB" mnemonicParsing="false" onMouseClicked="#adjustSize" prefHeight="30.0" prefWidth="90.0" text="Adjust size" />
+                              <Button fx:id="loadButton" mnemonicParsing="false" onMouseClicked="#loadGraph" prefHeight="30.0" prefWidth="90.0" text="Generate" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </right>
+   <center>
+      <ScrollPane id="scrollPane" fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <content>
+            <Canvas id="canvas" fx:id="canvas" height="486.0" onMouseClicked="#canvasMouseClick" onMouseDragged="#canvasMouseDragged" onMouseMoved="#canvasMouseMoved" onMousePressed="#canvasMousePressed" onMouseReleased="#canvasMouseReleased" onScroll="#zoom" width="339.0" />
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
